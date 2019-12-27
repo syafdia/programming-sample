@@ -11,6 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('tasks', 'TaskController@findAll');
+Route::get('tasks/{id}', 'TaskController@findOne');
+Route::post('tasks', 'TaskController@create');
+Route::put('tasks/{id}', 'TaskController@update');
+Route::delete('tasks/{id}', 'TaskController@delete');
+
+Route::get('/', 'WebController@index');

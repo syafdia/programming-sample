@@ -8,7 +8,14 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesResources;
 
-class Controller extends BaseController
+class Controller extends BaseController 
 {
-    use AuthorizesRequests, AuthorizesResources, DispatchesJobs, ValidatesRequests;
+    protected function respError($err, $code = 500) {
+        return response()->json(['error' => $err], $code);
+    }
+
+    protected function respSuccess($data, $code = 200) {
+        return response()->json(['data' => $data], $code);
+    }
+
 }
