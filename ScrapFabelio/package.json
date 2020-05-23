@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next build && next start"
   },
   "author": "",
   "license": "ISC",
@@ -16,5 +16,8 @@
     "next": "^9.4.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
+  },
+  "engines": {
+    "node": "10.16.0"
   }
 }
