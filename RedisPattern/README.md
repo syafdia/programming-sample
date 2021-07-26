@@ -1,0 +1,1 @@
+docker build -t redis-pattern . && docker run -p 7379:6379 redis-pattern
