@@ -8,7 +8,7 @@ import (
 )
 
 type FindMultipleMoviesUseCase interface {
-	Execute(ctx context.Context, searchWord string, pagination int) ([]entity.Movie, error)
+	Execute(ctx context.Context, searchWord string, pagination int) ([]entity.MovieSummary, error)
 }
 
 type findMultipleMoviesUseCase struct {
@@ -23,6 +23,14 @@ func NewFindMultipleMoviesUseCase(
 	return &findMultipleMoviesUseCase{movieRepo: movieRepo, logRepo: logRepo}
 }
 
-func (f *findMultipleMoviesUseCase) Execute(ctx context.Context, searchWord string, pagination int) ([]entity.Movie, error) {
-	return []entity.Movie{}, entity.ErrNotImplemented
+func (f *findMultipleMoviesUseCase) Execute(ctx context.Context, searchWord string, pagination int) ([]entity.MovieSummary, error) {
+	f.logRepo.Insert(ctx, map[string]interface{}{
+		"action": "MultipleMovies",
+		"payload": map[string]interface{}{
+			"search_word": searchWord,
+			"pagination":  pagination,
+		},
+	})
+
+	return f.movieRepo.FindMultipleSummaries(ctx, searchWord, pagination)
 }

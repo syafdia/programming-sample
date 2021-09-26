@@ -7,6 +7,6 @@ import (
 )
 
 type MovieRepository interface {
-	FindOne(ctx context.Context, imdbID string) (entity.Movie, error)
-	FindMultiple(ctx context.Context, searchWord string, pagination int) ([]entity.Movie, error)
+	FindOneDetail(ctx context.Context, imdbID string) (entity.MovieDetail, error)
+	FindMultipleSummaries(ctx context.Context, searchWord string, pagination int) ([]entity.MovieSummary, error)
 }

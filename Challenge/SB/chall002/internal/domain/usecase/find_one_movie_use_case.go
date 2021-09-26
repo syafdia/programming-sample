@@ -8,7 +8,7 @@ import (
 )
 
 type FindOneMovieUseCase interface {
-	Execute(ctx context.Context, id string) (entity.Movie, error)
+	Execute(ctx context.Context, id string) (entity.MovieDetail, error)
 }
 
 type findOneMovieUseCase struct {
@@ -23,6 +23,13 @@ func NewFindOneMovieUseCase(
 	return &findOneMovieUseCase{movieRepo: movieRepo, logRepo: logRepo}
 }
 
-func (f *findOneMovieUseCase) Execute(ctx context.Context, id string) (entity.Movie, error) {
-	return entity.Movie{}, entity.ErrNotImplemented
+func (f *findOneMovieUseCase) Execute(ctx context.Context, id string) (entity.MovieDetail, error) {
+	f.logRepo.Insert(ctx, map[string]interface{}{
+		"action": "FindOneMovie",
+		"payload": map[string]interface{}{
+			"id": id,
+		},
+	})
+
+	return f.movieRepo.FindOneDetail(ctx, id)
 }
