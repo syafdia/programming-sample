@@ -29,7 +29,7 @@ func main() {
 	address := "0.0.0.0:8002"
 	listener, err := net.Listen("tcp", address)
 	if err != nil {
-		log.Fatalf("Error %v", err)
+		log.Fatalf("failed when listening, err: %v", err)
 	}
 	fmt.Printf("GRPC server is listening on %v ...", address)
 
