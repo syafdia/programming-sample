@@ -33,7 +33,7 @@ func (m *movieRepo) FindOneDetail(ctx context.Context, id string) (entity.MovieD
 		return entity.MovieDetail{}, err
 	}
 
-	detail.ID = id
+	detail.Id = id
 
 	return detail, nil
 }
@@ -58,7 +58,7 @@ func (m *movieRepo) FindMultipleSummaries(ctx context.Context, searchWord string
 	summaries := []entity.MovieSummary{}
 	for _, s := range jsonBody.Search {
 		summaries = append(summaries, entity.MovieSummary{
-			ID:     s.ImdbID,
+			Id:     s.ImdbID,
 			Title:  s.Title,
 			Year:   s.Year,
 			Type:   s.Type,
