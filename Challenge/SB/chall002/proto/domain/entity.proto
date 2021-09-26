@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package entity;
+
+option go_package = "github.com/syafdia/sb/chal002/internal/domain/entity";
+
+message MovieSummary {
+  string id = 1;
+  string title = 2;
+  string year = 3;
+  string type = 4;
+  string poster = 5;
+}
+
+message Rating {
+  string source = 1;
+  string value = 2;
+}  
+
+message MovieDetail {
+  string  id      = 1;
+  string	title   = 2;
+  string	year    = 3;
+  string	rated   = 4;
+  string	runtime = 5;
+  string	genre   = 6;
+  string	director= 7;
+  string	writer  = 8;
+  string	actors  = 9;
+  string	plot    = 10;
+  repeated Rating ratings = 11;
+}

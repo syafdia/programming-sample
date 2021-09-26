@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package delivery;
+
+import "domain/entity.proto";
+
+option go_package = "internal/delivery/grpc";
+
+message MovieFindOneRequest {
+  string id = 1;
+}
+
+message MovieFindOneResponse {
+  entity.MovieDetail payload = 1;
+}
+
+message MovieFindMultipleRequest {
+  string search_word = 1;
+  int32 pagination = 2;
+}
+
+message MovieFindMultipleResponse {
+  repeated entity.MovieSummary payload = 1;
+}
+
+service MovieService {
+  rpc FindOne(MovieFindOneRequest) returns (MovieFindOneResponse) {}
+  rpc FindMultiple(MovieFindMultipleRequest) returns (MovieFindMultipleResponse) {}
+}

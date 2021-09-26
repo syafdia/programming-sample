@@ -3,6 +3,7 @@ package http
 import (
 	"errors"
 	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 	"github.com/syafdia/sb/chal002/internal/domain/entity"
@@ -30,17 +31,23 @@ func NewMovieHandler(
 }
 
 func (m *movieHandler) FindOne(c *gin.Context) {
-	result, err := m.findOneMovieUseCase.Execute(c.Request.Context(), "tt2313197")
+	result, err := m.findOneMovieUseCase.Execute(c.Request.Context(), c.Param("id"))
 	if err != nil {
 		m.handleError(c, err)
 		return
 	}
+
 	c.JSON(http.StatusOK, result)
-	// TODO
 }
 
 func (m *movieHandler) FindMultiple(c *gin.Context) {
-	results, err := m.findMultipleMoviesUseCase.Execute(c.Request.Context(), "Batman", 1)
+	searchWord := c.Query("search_word")
+	pagination, err := strconv.Atoi(c.Query("pagination"))
+	if err != nil {
+		pagination = 1
+	}
+
+	results, err := m.findMultipleMoviesUseCase.Execute(c.Request.Context(), searchWord, pagination)
 	if err != nil {
 		m.handleError(c, err)
 		return
