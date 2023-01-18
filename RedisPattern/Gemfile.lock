@@ -4,7 +4,7 @@ GEM
     multi_json (1.15.0)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
-    rack (2.2.3)
+    rack (2.2.6.2)
     rack-protection (2.1.0)
       rack
     redis (4.3.1)
@@ -24,6 +24,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-18
+  x86_64-linux
 
 DEPENDENCIES
   redis
