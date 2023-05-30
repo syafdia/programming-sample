@@ -1,6 +1,18 @@
 from dataclasses import dataclass
-from typing import Union
+from typing import List, Union
 import datetime
+
+SLACK_CHANNEL_ID_APP_MANAGEMENT = 'XX-XXXXX'
+SLACK_CHANNEL_ID_ERROR = 'YY-YYYYY'
+
+@dataclass
+class GcloudAppEngineCreateAppPayload:
+    service_account: str
+    region: str
+
+@dataclass
+class GcloudAppEngineDeployAppPayload:
+    app_yaml: str
 
 @dataclass
 class AivenCreateAuthenticationMethodPayload:
@@ -21,6 +33,7 @@ class AivenCreateServicePayload:
 
 @dataclass
 class AivenService:
+    id: str
     plan: str
     service_name: str
     service_type: str
@@ -34,5 +47,19 @@ class SlackPostMessagePayload:
     thread_ts: Union[str, None] = None
 
 @dataclass
+class GithubApplicationMetadata:
+    region: str
+    application_name: str
+    gcloud_project_id: str
+    gcloud_service_account: str
+    aiven_database_plan: str
+    aiven_database_type: str
+
+@dataclass
 class AppManagementCreateAppPayload:
     git_uri: str
+
+class AppManagementDestroyAppPayload:
+    git_uri: str
+    notify_email_addresses: List[str]
+
